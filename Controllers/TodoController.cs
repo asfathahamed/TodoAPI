@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TodoApp.API.Models;
 using TodoApp.API.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TodoApp.API.Controllers
 {
+    
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TodoController : ControllerBase
@@ -18,6 +21,7 @@ namespace TodoApp.API.Controllers
             _context = context;
         }
         // GET api/todo
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult GetValues()
         {
